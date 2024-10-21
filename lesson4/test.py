@@ -10,12 +10,12 @@ class Window(ThemedTk):
         style = ttk.Style(self)
         # ===================TOP FRAME==================================================================#
         topFrame = ttk.Frame(self, borderwidth=1, relief='groove')
-        btn1 = ttk.Button(topFrame, text='按鈕1')
+        btn1 = ttk.Button(topFrame, text='按鈕1', command=self.user_click1)
         btn1.pack(side='left', padx=10, expand=True)
-        btn2 = ttk.Button(topFrame, text='按鈕2')
+        btn2 = ttk.Button(topFrame, text='按鈕2', command=self.user_click2)
         btn2.pack(side='left', padx=10, expand=True)
         btn3 = ttk.Button(topFrame, text='按鈕3')
-        btn3.pack(side='left', padx=10, expand=True)
+        btn3.pack(side='left', padx=10, expand=True, command=self.user_click3)
         topFrame.pack(ipadx=10, expand=True, fill='x')
         # ==================End TOP FRAME====================================================#
         # ===================BOTTOM FRAME===============================================================#
@@ -53,6 +53,15 @@ class Window(ThemedTk):
         # ===================End BOTTOM FRAME Right===============================================================#
         buttomFrame.pack(expand=True, fill='x')
         # ===================End BOTTOM FRAME===============================================================#
+
+    def user_click1(shelf):
+        print('hello!button')
+
+    def user_click2(shelf):
+        print('hello!button')
+
+    def user_click3(shelf):
+        print('hello!button')
 
 
 def main():

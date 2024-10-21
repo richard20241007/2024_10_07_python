@@ -1,72 +1,79 @@
-import tkinter as tk
-from tkinter import ttk
 from ttkthemes import ThemedTk
+from tkinter import ttk
 
 
-def Window():
-    root = ThemedTk()
-    root.title("TtkThemes_homework")
-    root.geometry("600x400")
 
-    # =========創建頂部的按鈕框架
-    top_frame = ttk.Frame(root)
-    top_frame.pack(fill=tk.X, padx=10, pady=10)
+class Window(ThemedTk):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title('homework')
+        style = ttk.Style(self)
+        # ===================TOP FRAME==================================================================#
+        topFrame = ttk.Frame(self, borderwidth=1, relief='groove')
+        self.btn1 = ttk.Button(topFrame, text="按鈕", command=self.user_click1)
+        self.btn1.pack(side='left', expand=True, fill='x', padx=10)
+        btn2 = ttk.Button(topFrame, text="按鈕", command=self.user_click2)
+        btn2.pack(side='left', expand=True, fill='x')
+        btn3 = ttk.Button(topFrame, text="按鈕", command=self.user_click3)
+        btn3.pack(side='left', expand=True, fill='x', padx=10)
+        topFrame.pack(padx=10, pady=(10, 0), ipadx=10,
+                      ipady=10, expand=True, fill='x')
+# ==================End TOP FRAME====================================================#
+# ===================BOTTOM FRAME====================================================
+        bottomFrame = ttk.Frame(self, borderwidth=1,
+                                height=2000, relief='groove')
+        bottomFrame.pack(padx=10, pady=10, expand=True, fill='x')
 
-    # 設置頂部框架的列權重，使按鈕平均分配空間
-    for i in range(3):
-        top_frame.columnconfigure(i, weight=1)
+        f1 = ttk.Frame(bottomFrame, borderwidth=3, relief='groove')
+        f2 = ttk.Frame(bottomFrame, borderwidth=3, relief='groove')
+        f3 = ttk.Frame(bottomFrame, borderwidth=3, relief='groove')
+        f1.pack(side='left', padx=10, expand=True, fill='both')
+        f2.pack(side='left', padx=10, expand=True, fill='both')
+        f3.pack(side='left', padx=10, expand=True, fill='both')
 
-    # 創建並放置頂部按鈕
-    for i in range(3):
-        btn = ttk.Button(top_frame, text=f"按鈕{i+1}")
-        btn.grid(row=0, column=i, sticky="ew", padx=5)
+        btna4 = ttk.Button(f1, text="按鈕4")
+        btna4.pack(fill='x', padx=10, pady=(5, 5), ipady=50)
+        btna4.bind('<ButtonRelease>', self.left_button_click)
+        btna5 = ttk.Button(f1, text="按鈕5")
+        btna5.bind('<ButtonRelease>', self.left_button_click)
+        btna5.pack(fill='x', padx=10, pady=(5, 5), ipady=25)
+        btna6 = ttk.Button(f1, text="按鈕6")
+        btna6.bind('<ButtonRelease>', self.left_button_click)
+        btna6.pack(fill='x', padx=10, pady=(5, 5), ipady=25)
 
-    # 創建主框架
-    main_frame = ttk.Frame(root)
-    main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        btnb7 = ttk.Button(f2, text="按鈕7")
+        btnb7.pack(fill='x', padx=10, pady=(5, 5), ipady=40)
+        btnb8 = ttk.Button(f2, text="按鈕8")
+        btnb8.pack(fill='x', padx=10, pady=(5, 5), ipady=20)
+        btnb9 = ttk.Button(f2, text="按鈕9")
+        btnb9.pack(fill='x', padx=10, pady=(5, 5), ipady=40)
 
-    # 在主框架中創建3列
-    for i in range(3):
-        main_frame.columnconfigure(i, weight=1)
-    main_frame.rowconfigure(0, weight=1)
+        btnc10 = ttk.Button(f3, text="按鈕10")
+        btnc10.pack(fill='x', padx=10, pady=(5, 5), ipady=100/3)
+        btnc11 = ttk.Button(f3, text="按鈕11")
+        btnc11.pack(fill='x', padx=10, pady=(5, 5), ipady=100/3)
+        btnc12 = ttk.Button(f3, text="按鈕12")
+        btnc12.pack(fill='x', padx=10, pady=(5, 5), ipady=100/3)
+        # ===================End BOTTOM FRAME===============================================================#
 
-    # 在每列中創建一個框架
-    for col in range(3):
-        column_frame = ttk.Frame(main_frame, relief="groove", borderwidth=2)
-        column_frame.grid(row=0, column=col, sticky="nsew", padx=5)
-        column_frame.columnconfigure(0, weight=1)
+    def user_click1(self):
+        self.btn1.configure(text='被按了')
+        print('hello!button')
 
-        # 根據列的不同，設置不同的按鈕大小
-        if col == 0:  # 左邊列
-            sizes = ["大的", "中等", "中等"]
-        elif col == 1:  # 中間列
-            sizes = ["大的", "最小的", "大的"]
-        else:  # 右邊列
-            sizes = ["中等", "中等", "中等"]
+    def user_click2(self):
+        print('hello!button')
 
-        # 在每個列框架中添加按鈕
-        for row, size in enumerate(sizes):
-            btn = ttk.Button(column_frame, text=size)
-            if size == "大的":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=10, ipady=20)
-                column_frame.rowconfigure(row, weight=2)
-            elif size == "中等":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=5, ipady=10)
-                column_frame.rowconfigure(row, weight=1)
-            elif size == "最小的":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=2, ipady=2)
-                column_frame.rowconfigure(row, weight=1)
-
-    return root
+    def user_click3(self):
+        print('hello!button')
+    
+    def left_button_click(self,event):
+        print(event.widget.configure(text="被按了"))
 
 
 def main():
-    window = Window()
+    window = Window(theme="arc")
     window.mainloop()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
