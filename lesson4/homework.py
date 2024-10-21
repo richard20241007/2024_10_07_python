@@ -8,7 +8,7 @@ def Window():
     root.title("TtkThemes_homework")
     root.geometry("600x400")
 
-    # 創建頂部的按鈕框架
+    # =========創建頂部的按鈕框架
     top_frame = ttk.Frame(root)
     top_frame.pack(fill=tk.X, padx=10, pady=10)
 

@@ -1,78 +1,64 @@
-import tkinter as tk
-from tkinter import ttk
 from ttkthemes import ThemedTk
+from tkinter import ttk
 
 
 class Window(ThemedTk):
-    root = ThemedTk()
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.title("TtkThemes_homework")
-        self.geometry("600x400")
-        
-
-    # 創建頂部的按鈕框架
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.title()
+        self.title("homework!!!!")
         style = ttk.Style(self)
+        # ===================TOP FRAME==================================================================#
         topFrame = ttk.Frame(self, borderwidth=1, relief='groove')
-        btn1 = ttk.Button(topFrame, text="按鈕1")
-        btn1.pack(side='left', expand=True, fill='x', padx=10)
-        btn2 = ttk.Button(topFrame, text="按鈕2")
-        btn2.pack(side='left', expand=True, fill='x')
-        btn3 = ttk.Button(topFrame, text="按鈕3")
-        btn3.pack(side='left', expand=True, fill='x', padx=10)
-        topFrame.pack(padx=10, pady=(10, 0), ipadx=10,
-                      ipady=10, expand=True, fill='x')
-        bottomFrame = ttk.Frame(
-            self, width=500, height=300, borderwidth=1, relief='groove')
-        bottomFrame.pack(padx=10, pady=10)   
-    
+        btn1 = ttk.Button(topFrame, text='按鈕1')
+        btn1.pack(side='left', padx=10, expand=True)
+        btn2 = ttk.Button(topFrame, text='按鈕2')
+        btn2.pack(side='left', padx=10, expand=True)
+        btn3 = ttk.Button(topFrame, text='按鈕3')
+        btn3.pack(side='left', padx=10, expand=True)
+        topFrame.pack(ipadx=10, expand=True, fill='x')
+        # ==================End TOP FRAME====================================================#
+        # ===================BOTTOM FRAME===============================================================#
+        buttomFrame = ttk.Frame(self, borderwidth=1, relief='groove')
 
-    # 創建主框架
-        main_frame = ttk.Frame(self)
-        main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-
-    # 在主框架中創建3列
-        for i in range(3):
-            main_frame.columnconfigure(i, weight=1)
-        main_frame.rowconfigure(0, weight=1)
-
-    # 在每列中創建一個框架
-        for col in range(3):
-            column_frame = ttk.Frame(main_frame, relief="groove", borderwidth=2)
-            column_frame.grid(row=0, column=col, sticky="nsew", padx=5)
-            column_frame.columnconfigure(0, weight=1)
-
-        # 根據列的不同，設置不同的按鈕大小
-        if col == 0:  # 左邊列
-            sizes = ["大的", "中等", "中等"]
-        elif col == 1:  # 中間列
-            sizes = ["大的", "最小的", "大的"]
-        else:  # 右邊列
-            sizes = ["中等", "中等", "中等"]
-
-        # 在每個列框架中添加按鈕
-        for row, size in enumerate(sizes):
-            btn = ttk.Button(column_frame, text=size)
-            if size == "大的":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=10, ipady=20)
-                column_frame.rowconfigure(row, weight=2)
-            elif size == "中等":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=5, ipady=10)
-                column_frame.rowconfigure(row, weight=1)
-            elif size == "最小的":
-                btn.grid(row=row, column=0, sticky="nsew",
-                         padx=5, pady=2, ipady=2)
-                column_frame.rowconfigure(row, weight=1)
-
+        # ===================BOTTOM FRAME LEFT===============================================================#
+        buttomFrameL = ttk.Frame(self, borderwidth=1, relief='groove')
+        btn4 = ttk.Button(buttomFrameL, text='按鈕4')
+        btn4.pack(side='top', ipady=30, padx=5, pady=(10, 5))
+        btn5 = ttk.Button(buttomFrameL, text='按鈕5')
+        btn5.pack(side='top', ipady=10, padx=5, pady=5)
+        btn6 = ttk.Button(buttomFrameL, text='按鈕6')
+        btn6.pack(side='top', ipady=10, padx=5, pady=(5, 10))
+        buttomFrameL.pack(side='left', expand=True, fill='y', padx=10)
+        # ===================End BOTTOM FRAME LEFT===============================================================#
+        # ===================BOTTOM FRAME CENTER===============================================================#
+        buttomFrameC = ttk.Frame(self, borderwidth=1, relief='groove')
+        btn7 = ttk.Button(buttomFrameC, text='按鈕7')
+        btn7.pack(side='top', ipady=22, padx=(5, 8), pady=(5, 10))
+        btn8 = ttk.Button(buttomFrameC, text='按鈕8')
+        btn8.pack(side='top', ipady=5, padx=(5, 8), pady=5)
+        btn9 = ttk.Button(buttomFrameC, text='b按鈕9')
+        btn9.pack(side='top', ipady=25, padx=(5, 8), pady=5)
+        buttomFrameC.pack(side='left', expand=True, fill='y', padx=10)
+        # ===================End BOTTOM FRAME CENTER===============================================================#
+        # ===================BOTTOM FRAME RIGHT===============================================================#
+        buttomFrameR = ttk.Frame(self, borderwidth=1, relief='groove')
+        btn10 = ttk.Button(buttomFrameR, text='按鈕9')
+        btn10.pack(side='top', ipady=15, padx=5, pady=(0, 10))
+        btn11 = ttk.Button(buttomFrameR, text='按鈕10')
+        btn11.pack(side='top', ipady=15, padx=5, pady=10)
+        btn12 = ttk.Button(buttomFrameR, text='按鈕11')
+        btn12.pack(side='top', ipady=15, padx=5, pady=10)
+        buttomFrameR.pack(side='left', expand=True, fill='y', padx=10)
+        # ===================End BOTTOM FRAME Right===============================================================#
+        buttomFrame.pack(expand=True, fill='x')
+        # ===================End BOTTOM FRAME===============================================================#
 
 
 def main():
-    window = Window(theme="arc")
-    window.mainloop()
+    root = Window(theme='breeze')
+    root.mainloop()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-    
