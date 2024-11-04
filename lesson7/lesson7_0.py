@@ -79,12 +79,8 @@ class Window(ThemedTk):
         # self.tree.insert("", "end", values=record)
 
 
-def download_data():
-    pass
-
-
 def main():
-    download_data()
+    datasource.download_data()  # 下載至資料庫
     window = Window(theme="arc")
     window.mainloop()
 
