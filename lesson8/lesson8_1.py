@@ -47,13 +47,15 @@ class Window(ThemedTk):
         # ==============End SelectedFrame===============
 
         # define columns
-        columns = ('date', 'county', 'aqi', 'pm25', 'status', 'lat', 'lon')
+        columns = ('date', 'county', 'sitename', 'aqi',
+                   'pm25', 'status', 'lat', 'lon')
 
         self.tree = ttk.Treeview(bottomFrame, columns=columns, show='headings')
 
         # define headings
         self.tree.heading('date', text='日期')
         self.tree.heading('county', text='縣市')
+        self.tree.heading('sitename', text='站點')
         self.tree.heading('aqi', text='AQI')
         self.tree.heading('pm25', text='PM25')
         self.tree.heading('status', text='狀態')
@@ -62,6 +64,7 @@ class Window(ThemedTk):
 
         self.tree.column('date', width=150, anchor="center")
         self.tree.column('county', width=80, anchor="center")
+        self.tree.column('sitename', width=80, anchor="center")
         self.tree.column('aqi', width=50, anchor="center")
         self.tree.column('pm25', width=50, anchor="center")
         self.tree.column('status', width=50, anchor="center")
@@ -91,14 +94,19 @@ class Window(ThemedTk):
             self.sitenameFrame.destroy()
 
         self.sitenameFrame = view.SitenameFrame(
-            master=self.selectedFrame, sitenames=sitenames)
+            master=self.selectedFrame, sitenames=sitenames, radio_controller=self.radio_button_click)
         self.sitenameFrame.pack()
 
-    def sitename_selected(self, event):
+    def radio_button_click(self, selected_sitename: str):
+        '''
+        - 此method是傳遞給SitenameFrame實體
+        - 當sitenameFrame內的radiobutton被選取時,會連動執行此method
+        Parameter:
+            selected_sitename:str -> 這是被選取的站點名稱
+        '''
         for children in self.tree.get_children():
             self.tree.delete(children)
-        selected = self.selected_site.get()
-        selected_data = datasource.get_selected_data(selected)
+        selected_data = datasource.get_selected_data(selected_sitename)
         for record in selected_data:
             self.tree.insert("", "end", values=record)
 
