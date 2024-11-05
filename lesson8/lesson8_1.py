@@ -30,6 +30,10 @@ class Window(ThemedTk):
         bottomFrame = ttk.Frame(self)
         # ==============SelectedFrame===============
         self.selectedFrame = ttk.Frame(self, padding=[10, 10, 10, 10])
+        # 增加refresh button
+        icon_button = view.ImageButton(self.selectedFrame)
+        icon_button.pack()
+
         # combobox選擇城市
         counties = datasource.get_county()
         # self.selected_site = tk.StringVar()
