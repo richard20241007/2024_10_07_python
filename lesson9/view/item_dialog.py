@@ -33,14 +33,14 @@ class MyCustomDialog(Dialog):
             self.status = '危險'
             path = './images/red.png'
         canvas_left.create_rectangle(
-            10, 10, 190, 190, outline="#9E7A7A", width=2)
+            10, 10, 190, 190, outline="#FFC408", width=2)
         canvas_left.create_text(100, 40, text=f'AQI:{self.status}', font=(
-            "Helvetica", 24, "bold"), fill='#9E7A7A')
+            "Helvetica", 24, "bold"), fill='#FFC408')
         self.img = Image.open(path)
         self.green = ImageTk.PhotoImage(self.img)
         canvas_left.create_image(100, 100, anchor='center', image=self.green)
         canvas_left.create_text(100, 160, text=f'AQI:{self.aqi}', font=(
-            "Helvetica", 24, "bold"), fill='#9E7A7A')
+            "Helvetica", 24, "bold"), fill='#FFC408')
 
         canvas_left.pack(side='left')
 
@@ -55,14 +55,14 @@ class MyCustomDialog(Dialog):
             self.pm25_status = '危險'
             path = './images/red.png'
         canvas_right.create_rectangle(
-            10, 10, 190, 190, outline="#9E7A7A", width=2)
+            10, 10, 190, 190, outline="#CB4042", width=2)
         canvas_right.create_text(100, 40, text=f'PM2.5:{self.pm25_status}', font=(
-            "Helvetica", 24, "bold"), fill='#9E7A7A')
+            "Helvetica", 24, "bold"), fill='#CB4042')
         self.img1 = Image.open(path)
         self.green1 = ImageTk.PhotoImage(self.img1)
         canvas_right.create_image(100, 100, anchor='center', image=self.green1)
         canvas_right.create_text(100, 160, text=f'PM2.5:{self.pm25}', font=(
-            "Helvetica", 24, "bold"), fill='#9E7A7A')
+            "Helvetica", 24, "bold"), fill='#CB4042')
         canvas_right.pack(side='right')
         main_frame.pack(expand=True, fill='x')
 
