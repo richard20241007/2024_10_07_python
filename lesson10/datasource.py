@@ -131,5 +131,4 @@ def download_data():
                 sql = '''INSERT OR IGNORE INTO records(sitename,county,aqi,status,pm25,date,lat,lon)
                         values (?,?, ?, ?,?,?,?,?);
                 '''
-                cursor.execute(sql, (sitename, county, aqi,
-                               status, pm25, date, lat, lon))
+                cursor.execute(sql, (sitename, county, aqi, status,pm25,date,lat,lon))
