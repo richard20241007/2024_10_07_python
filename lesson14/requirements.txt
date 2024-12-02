@@ -1,0 +1,6 @@
+requests
+ttkthemes
+Pillow
+tkintermapview
+python-dotenv
+gunicorn
