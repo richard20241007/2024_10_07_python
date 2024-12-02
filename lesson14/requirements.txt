@@ -1,6 +1,5 @@
 requests
-ttkthemes
-Pillow
-tkintermapview
 python-dotenv
+Flask
+pydantic
 gunicorn
