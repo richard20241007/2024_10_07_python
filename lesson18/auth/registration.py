@@ -2,6 +2,8 @@ from . import auth
 from flask import render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, validators
+from werkzeug.security import generate_password_hash
+from datasource import is_email_duplicate, add_user
 
 
 class RegistrationForm(FlaskForm):
@@ -26,5 +28,19 @@ class RegistrationForm(FlaskForm):
 def regist():
     form = RegistrationForm(request.form)
     if request.method == "POST" and form.validate():
-        return redirect(url_for('auth.success'))
+        name = form.username.data
+        email = form.email.data
+        password = form.password.data
+        password_hash = generate_password_hash(
+            password=password, method='pbkdf2:sha256', salt_length=8)
+        print(password_hash)
+        if not is_email_duplicate(email):
+            # email沒有重覆
+            if add_user(name, email, password_hash):
+                return redirect(url_for('auth.success'))
+            else:
+                print("加入失敗")
+        else:
+            print('email有重覆')
+
     return render_template('auth/registration.j2', form=form)
